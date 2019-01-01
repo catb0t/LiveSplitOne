@@ -1,0 +1,41 @@
+{
+  "icons": [
+    {
+      "src": "icon_512x512.ee2e0e169183a2b542a10ea9231f56a7.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_384x384.50df87b991975ae7d28c9b041f018756.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_256x256.434848e115e17f8a2e8137f108fd5546.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_192x192.16bc639f72bcb12718c2cf4e2f01247a.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_128x128.b012453903e2b3672fbb56799d0a2038.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_96x96.7214785660351364c3db2643cd26ddde.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "LiveSplit One",
+  "short_name": "LiveSplit One",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "background_color": "#171717",
+  "description": "A version of LiveSplit that works on a lot of platforms."
+}
