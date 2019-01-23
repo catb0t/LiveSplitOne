@@ -56,7 +56,7 @@ export async function open_url_as_arraybuffer(url: string): Promise<ArrayBuffer>
   }).then(async function (response) {
     return new TextEncoder().encode(await response.text());
   }, (error) => {
-    return error.message //=> String
+    return error.message;
   })
 }
 
@@ -64,10 +64,10 @@ export async function open_url_as_string(url: string): Promise<string> {
   return fetch(url, {
     method: "GET",
   }).then((response) => {
-    return response.text()
+    return response.text();
   }, (error) => {
-    return error.message //=> String
-  })
+    return error.message;
+  });
 }
 
 export function exportFile(filename: string, data: any) {
