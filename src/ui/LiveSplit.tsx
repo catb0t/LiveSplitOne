@@ -6,7 +6,8 @@ import {
     Segment, SharedTimer, Timer, TimerPhase, TimingMethod,
     TimeSpan, TimerRef, TimerRefMut, HotkeyConfig,
 } from "../livesplit";
-import { exportFile, openFileAsArrayBuffer, openFileAsString } from "../util/FileUtil";
+// @ts-ignore
+import { exportFile, openFileAsArrayBuffer, open_url_as_arraybuffer, openFileAsString, open_url_as_string } from "../util/FileUtil";
 import { Option, assertNull, expect, maybeDispose, maybeDisposeAndThen, map, panic } from "../util/OptionUtil";
 import * as SplitsIO from "../util/SplitsIO";
 import { LayoutEditor as LayoutEditorComponent } from "./LayoutEditor";
@@ -230,9 +231,14 @@ export class LiveSplit extends React.Component<{}, State> {
     }
 
     public async importSplits() {
-        const [file] = await openFileAsArrayBuffer();
+        // @ts-ignore
+        const url = "https://raw.githubusercontent.com/catb0t/gta-livesplit-extras/master/Grand%20Theft%20Auto%20Vice%20City%20-%20All%20Missions%20Dupeless%20Winter%20Mod.lss";
+        const file = await open_url_as_arraybuffer(url);
+        //const [file] = await openFileAsArrayBuffer();
+        console.log("splits: " + file);
         const timer = this.state.timer;
         const result = Run.parseArray(new Int8Array(file), "", false);
+        console.log(result);
         if (result.parsedSuccessfully()) {
             const run = result.unwrap();
             maybeDisposeAndThen(
@@ -317,7 +323,9 @@ export class LiveSplit extends React.Component<{}, State> {
     }
 
     public async importLayout() {
-        const [file] = await openFileAsString();
+        const url = "https://raw.githubusercontent.com/catb0t/gta-livesplit-extras/master/Grand%20Theft%20Auto%20Vice%20City%20-%20All%20Missions%20Dupeless%20Winter%20Mod.ls1l";
+        const file = await open_url_as_string(url);
+        console.log("contents: " + file );
         let layout = null;
         try {
             layout = Layout.parseJson(JSON.parse(file));

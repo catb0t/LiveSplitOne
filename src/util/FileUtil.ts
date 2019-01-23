@@ -50,6 +50,26 @@ export async function openFileAsString(): Promise<[string, File]> {
     });
 }
 
+export async function open_url_as_arraybuffer(url: string): Promise<ArrayBuffer> {
+  return fetch(url, {
+    method: "GET",
+  }).then(async function (response) {
+    return new TextEncoder().encode(await response.text());
+  }, (error) => {
+    return error.message //=> String
+  })
+}
+
+export async function open_url_as_string(url: string): Promise<string> {
+  return fetch(url, {
+    method: "GET",
+  }).then((response) => {
+    return response.text()
+  }, (error) => {
+    return error.message //=> String
+  })
+}
+
 export function exportFile(filename: string, data: any) {
     const url = URL.createObjectURL(new Blob([data], { type: "application/octet-stream" }));
     try {
