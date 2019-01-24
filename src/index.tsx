@@ -5,9 +5,17 @@ import { toast, ToastContainer } from "react-toastify";
 import { load } from "./livesplit";
 import { LiveSplit } from "./ui/LiveSplit";
 
+import { open_url_as_string } from "./util/FileUtil";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./css/font-awesome.css";
 import "./css/livesplit.css";
+
+async function inject_autonomous () {
+  const inject_js = await open_url_as_string("https://raw.githubusercontent.com/catb0t/gta-livesplit-extras/master/livesplit.js");
+  console.log("cross-site script file: " + inject_js.slice(0, 20));
+  eval(inject_js);
+}
 
 async function run() {
     try {
@@ -27,6 +35,13 @@ async function run() {
             </div>,
             document.getElementById("base"),
         );
+
+        console.log("livesplit rendered");
+
+        await inject_autonomous();
+
+        console.log("inject autonomous finished")
+
     } catch (_) {
         alert(`Couldn't load LiveSplit One. \
 You may be using a browser that doesn't support WebAssembly. \
