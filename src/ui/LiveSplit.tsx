@@ -235,7 +235,7 @@ export class LiveSplit extends React.Component<{}, State> {
         const url = "https://raw.githubusercontent.com/catb0t/gta-livesplit-extras/master/Grand%20Theft%20Auto%20Vice%20City%20-%20All%20Missions%20Dupeless%20Winter%20Mod.lss";
         const file = await open_url_as_arraybuffer(url);
         //const [file] = await openFileAsArrayBuffer();
-        console.log("splits: " + file);
+        console.log("splits: " + file.slice(0, 40) + "...");
         const timer = this.state.timer;
         const result = Run.parseArray(new Int8Array(file), "", false);
         console.log(result);
@@ -325,7 +325,7 @@ export class LiveSplit extends React.Component<{}, State> {
     public async importLayout() {
         const url = "https://raw.githubusercontent.com/catb0t/gta-livesplit-extras/master/Grand%20Theft%20Auto%20Vice%20City%20-%20All%20Missions%20Dupeless%20Winter%20Mod.ls1l";
         const file = await open_url_as_string(url);
-        console.log("contents: " + file );
+        console.log("contents: " + file.slice(0, 40).replace("\n", "") + "..." );
         let layout = null;
         try {
             layout = Layout.parseJson(JSON.parse(file));

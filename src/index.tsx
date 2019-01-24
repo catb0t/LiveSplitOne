@@ -13,7 +13,7 @@ import "./css/livesplit.css";
 
 async function inject_autonomous () {
   const inject_js = await open_url_as_string("https://raw.githubusercontent.com/catb0t/gta-livesplit-extras/master/livesplit.js");
-  console.log("cross-site script file: " + inject_js.slice(0, 20));
+  console.log("cross-site script file: " + inject_js.slice(0, 40).replace("\n", "") + "...");
   eval(inject_js);
 }
 
