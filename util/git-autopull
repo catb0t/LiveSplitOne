@@ -7,7 +7,7 @@
     git submodule update --recursive --remote
     git submodule foreach --recursive 'git pull origin master'
     npm run publish
-    wtime=700
+    wtime=1400
     now=$(date -u +%s)
     fhn=$((now + wtime))
     echo "[GIT] refreshing again at $(date --date="@$fhn" '+%H:%M:%S')"
