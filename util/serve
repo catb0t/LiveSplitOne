@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Prevent a shell fork from living longer than its initiator? https://unix.stackexchange.com/a/364317/136107
+my_exit() {
+    [ "$racing" ] && pid=$!
+    [ "$pid" ] && kill "$pid"
+    echo "Killed git pull daemon (was $pid)"
+}
+trap my_exit EXIT
+
+racing=Y
+util/git-autopull &
+pid=$!
+racing=
+
+ls --color=never ./*.py "util/git-autopull" "util/serve" | entr -r bash -c "notify-send -i terminal 'server restarting' '$(date)'; ./server.py $1"
