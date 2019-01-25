@@ -26,7 +26,7 @@ module.exports = (env, argv) => {
         devServer: {
             contentBase: basePath,
             compress: true,
-            port: 8080,
+            port: 8000,
         },
 
         resolve: {

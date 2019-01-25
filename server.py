@@ -162,8 +162,12 @@ class Server(BaseHTTPRequestHandler):
         if cpath == "":
             cpath = "index.html"
 
-        if cpath in allowed_paths:
-            get_path = "dist/web/" + cpath
+        if cpath in allowed_paths or cpath == "livesplit.js":
+            if cpath != "livesplit.js":
+                get_path = "dist/web/" + cpath
+            else:
+                get_path = "custom_livesplit.js"
+
             if not os.path.exists(get_path):
                 self.set_headers(500)
                 self.write_json_error("Server bug found!")
@@ -171,6 +175,7 @@ class Server(BaseHTTPRequestHandler):
               200,
               headers=(["Content-Type", mime.from_file(get_path)],)
             )
+
             with open(get_path, "rb") as filename:
                 self.wfile.write(filename.read())
 
