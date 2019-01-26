@@ -162,11 +162,10 @@ class Server(BaseHTTPRequestHandler):
         if cpath == "":
             cpath = "index.html"
 
-        if cpath in allowed_paths or cpath == "livesplit.js":
-            if cpath != "livesplit.js":
-                get_path = "dist/web/" + cpath
-            else:
-                get_path = "custom_livesplit.js"
+        if cpath in allowed_paths:  # or cpath.endswith("livesplit.js"):
+            get_path = "dist/web/" + cpath
+            # if cpath != "livesplit.js":
+            # else: get_path = "custom_livesplit.js"
 
             if not os.path.exists(get_path):
                 self.set_headers(500)
